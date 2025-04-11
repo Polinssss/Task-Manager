@@ -1,0 +1,26 @@
+.test-text{
+    background-color: lightblue;
+    color: blue;
+    border: 2px solid blue;
+}
+
+a {
+    transition: all 0.3s ease; /* Плавный переход для всех изменений */
+}
+
+
+.linkContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px; /* Отступ сверху для видимости */
+}
+
+/* Стили для кнопки */
+button {
+    margin-top: 20px; /* Отступ между шариком и кнопкой */
+    padding: 10px 20px; /* Внутренние отступы */
+    font-size: 16px; /* Размер шрифта */
+    cursor: pointer; /* Указатель нажатия */
+}
+
