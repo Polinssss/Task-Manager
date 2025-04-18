@@ -130,13 +130,19 @@ btnClear.addEventListener("click", ()=>{
 })
 
 
-/*------удаление задач---*/
+/*------делегирование событий---*/
 
 container.addEventListener("click", (event)=>{
     let btn = event.target; //элемент на котром кликнул пользователь
+    /*-----------удаление задачи-----------*/
     if(btn.classList.contains("btn-remove")){ //если это кнопка удаления, то...
         btn.closest(".task").remove(); //удаляем задачу
 
+    }
+
+    /*------редактирование задачи--------*/
+    if(btn.classList.contains("btn-edit")){
+        btn.closest(".task").querySelector("span").setAttribute("contenteditable", "true")
     }
 
 })
