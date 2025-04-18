@@ -57,14 +57,15 @@ document.getElementById('btn4').value = 'введите текст задачи'
 
 // Функция сравнения для сортировки
     function compare(a, b) {
-    if (a.innerHTML > b.innerHTML) return 1; // если первое значение больше второго
-    if (a.innerHTML == b.innerHTML) return 0; //если равны
-    if (a.innerHTML < b.innerHTML) return -1; // если первое значение меньше второго
+    if (a.querySelector("span").innerHTML > b.querySelector("span").innerHTML) return 1; // если первое значение больше второго
+    if (a.querySelector("span").innerHTML == b.querySelector("span").innerHTML) return 0; //если равны
+    if (a.querySelector("span").innerHTML < b.querySelector("span").innerHTML) return -1; // если первое значение меньше второго
 
 }
 
 // Функция сортировки по имени
     btn1.addEventListener('click', function ()  {
+       // tasks = document.querySelectorAll(".task");
         let newTasks = [...tasks].sort(compare);
         container.innerHTML = ''; // Очистка контейнера
         for(let i in newTasks) {
@@ -75,9 +76,9 @@ document.getElementById('btn4').value = 'введите текст задачи'
 // Функция сортировки по имени (обратный порядок)
     const btn2 = document.getElementById('btn2');
     function compareReverse(a, b) { 
-        if (a.innerHTML < b.innerHTML) return 1;
-        if (a.innerHTML > b.innerHTML) return -1;
-        if (a.innerHTML == b.innerHTML) return 0;
+        if (a.querySelector("span").innerHTML < b.querySelector("span").innerHTML) return 1;
+        if (a.querySelector("span").innerHTML > b.querySelector("span").innerHTML) return -1;
+        if (a.querySelector("span").innerHTML == b.querySelector("span").innerHTML) return 0;
 }
 
     btn2.addEventListener('click', function()  {
@@ -91,7 +92,7 @@ document.getElementById('btn4').value = 'введите текст задачи'
 
     const btn3 = document.getElementById('btn3');
     btn3.addEventListener('click', function()  {
-        let newTasks = [...tasks];
+        let newTasks = [...tasks].sort(compare);
         newTasks = Array.from(tasks).filter(task => task.classList.contains('immediate'));
         container.innerHTML = ''; // Очистка контейнера
         for(let i in newTasks) {
@@ -101,25 +102,30 @@ document.getElementById('btn4').value = 'введите текст задачи'
 
     
 
+    const filterTaskName = document.getElementById("task-name-f");
+    const btn4 = document.getElementById('btn4');
     btn4.addEventListener("click", function() {
-        let value = filterTaskName.value.toLowerCase(); // Получаем значение из input
-        let newTasks = [...document.querySelectorAll(".task")]; // Преобразуем коллекцию задач в массив
+        let value = filterTaskName.value.toLowerCase();
+        let newTasks = [...tasks].sort(compare);
     
-        // Фильтруем задачи по введенному значению
         newTasks = newTasks.filter(function(item) {
-            return item.innerHTML.toLowerCase().indexOf(value) !== -1; // Проверяем, содержится ли значение в тексте задачи
+            return item.innerHTML.toLowerCase().indexOf(value) !== -1;
         });
         
-        container.innerHTML = ""; // Очищаем контейнер
-        newTasks.forEach(task => container.append(task)); // Выводим новые задачи
+        container.innerHTML = "";
+        newTasks.forEach(task => container.append(task));
     });
 
 
-    btn5.addEventListener('click', () => { container.innerHTML = ''; // Очистка контейнера 
-// Возвращаем первоначальные задачи 
-    tasks.forEach(task => { container.appendChild(task.cloneNode(true)); 
-    // Клонируем элементы задач для добавления обратно в контейнер 
-}); 
+
+    btn5.addEventListener('click', () => { 
+        
+  
+    container.innerHTML = ''; // Очистка контейнера 
+    tasks.forEach(task => { 
+        container.append(task); 
+        // Клонируем элементы задач для добавления обратно в контейнер 
+    }); 
 });
 
 
